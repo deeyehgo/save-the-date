@@ -1,8 +1,7 @@
 /* jshint devel:true */
 
 (function() {
-  console.log('\'Allo \'Allo!');
-
+  'use strict';  
   $('#form').submit(function() {
     postToForm();
     return false;
