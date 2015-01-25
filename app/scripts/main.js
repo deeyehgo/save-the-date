@@ -118,7 +118,11 @@
     }
 
     function validateForm() {
-
+      //check name
+      //check address
+      //check city
+      //check state or region (depending on country)
+      //check zip
     }
   }
 }());
