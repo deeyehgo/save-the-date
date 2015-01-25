@@ -16,12 +16,10 @@
 
   var stateCopy = document.querySelector('.state-container-select');
   $('#mailing_address_state').change(function(event) {
-    stateCopy.innerHTML = $(this).val();
+    // stateCopy.innerHTML = $(this).val();
   }).trigger('change');
 
-
   $('#mailing_address_country').change(function() {
-    console.log($(this).val());
     if($(this).val() !== 'United States of America') {
       $('.form-region').show();
       $('.form-state').hide();
