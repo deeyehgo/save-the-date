@@ -29,7 +29,7 @@
       $('.form-state').show();
       data.region = '';
     }
-  }).trigger('change');
+  }).trigger('change'); 
 
   var bg = document.querySelector('.bg');
   var decoration = document.querySelector('.decoration');
