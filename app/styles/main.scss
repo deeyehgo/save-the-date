@@ -139,6 +139,13 @@ label {
   width: 400px;
 }
 
+.wedding-form-container {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 400px;
+}
+
 .form-address {
   margin-top: 35px;
 
@@ -173,16 +180,16 @@ label {
 }
 
 .zipcode {
-  width: 124px;
+  width: 124px !important;
 }
 
 .state {
   opacity: 0;
-  width: 109px;
+  width: 109px !important;
 }
 
 .city {
-  width: 146px;
+  width: 146px !important;
 
   &.with-region {
 
