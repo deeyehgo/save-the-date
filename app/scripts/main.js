@@ -10,7 +10,6 @@
       return false;
     }
     postToForm();
-    isFormSubmit = true;
     return false;
   });
 
@@ -50,7 +49,12 @@
   }
 
   function postToForm() {
-    validateForm();
+    if(validateForm() == false) {
+      console.log('form not validate')
+      return;
+    }
+
+    isFormSubmit = true;
 
     data = {
       name: $('#mailing_address_name').val(),
@@ -119,10 +123,33 @@
 
     function validateForm() {
       //check name
-      //check address
-      //check city
-      //check state or region (depending on country)
-      //check zip
+      if(!$('.form-name input').val()) {
+        console.log('no name');
+        return false;
+      } else if(!$('.form-address input').val()) {
+        console.log('no address');
+        return false;
+      } else if(!$('.city').val()) {
+        console.log('no city');
+        return false;
+      }
+
+      if($('#mailing_address_country') !== 'United States of America') {
+        if(!$('.state').val()) {
+          console.log('no state');
+          return false;
+        }
+      } else {
+        if(!$('.region').val()) {
+          console.log('no region');
+          return false;
+        }
+      }
+
+      if(!$('.zipcode').val()) {
+        console.log('no zipcode');
+        return false
+      }
     }
   }
 }());
