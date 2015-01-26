@@ -1,5 +1,9 @@
+$fa-font-path: "../fonts" !default;
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+
 // bower:scss
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "../../bower_components/font-awesome/scss/font-awesome.scss";
 // endbower
 
 $pink: #FFE4DB;
@@ -77,7 +81,7 @@ label {
   background-repeat: no-repeat;
   background-size: cover;
   left: 0;
-  max-height: 460px;
+  // max-height: 460px;
   position: absolute;
   top: 0;
   z-index: 1;
@@ -99,8 +103,8 @@ label {
   background-position: center;
   background-size: contain;
   border-bottom: 1px solid #e5e5e5;
-  height: 400px;
-  width: 100%;
+  width: 286px;
+  height: 154px;
 
   /* Make the masthead heading the same height as the navigation */
   h3 {
@@ -118,6 +122,19 @@ label {
   border-radius: 2px;
 }
 
+.country-container {
+  position: relative
+}
+
+.glyphicon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translate(0, -50%);
+  pointer-events: none;
+  font-size: 0.7em;
+}
+
 .container {
   left: 50%;
   position: absolute;
@@ -126,12 +143,51 @@ label {
 }
 
 .date-header {
-  height: 168px;
-  margin: 0 auto;
-  width: 160px;
+  margin: 40px auto 50px;
+  width: 286px;
+  left: 1px;
+  position: relative;
+  // height: 154px;
+  
+  @media (min-width: 800px) {
+    width: 671px;
+    // margin:
+  }
 
   img {
-    width: 100%;
+    // width: 100%;
+  }
+}
+
+.save-the-date-num {
+  display: inline-block;
+  width: 286px;
+  height: 154px;
+  margin: 0 30px;
+
+  @media (min-width: 800px) {
+    
+  }
+}
+
+.save-the-date-copy {
+  display: inline-block;
+  height: 15px;
+  width: 136px !important;
+
+  @media (min-width: 800px) {
+    
+  }
+}
+
+.save-the-date-name {
+  display: inline-block;
+  height: 15px;
+  // margin: 20px auto 50px;
+  width: 175px !important;
+
+  @media (min-width: 800px) {
+    
   }
 }
 
@@ -173,8 +229,8 @@ label {
 }
 
 .state-container {
-  
   background: $form-input-bg;
+  border-radius: 2px;
   position: relative;
   width: 100%;
 }
@@ -196,19 +252,20 @@ label {
 }
 
 .btn {
-  text-transform: uppercase;
-  width: 144px;
-  height: 40px;
   background-color: $form-send-bg;
-  -webkit-appearance: none;
   border: 0;
-  border-radius: 0;
+  border-radius: 2px;
   color: white;
-  position: absolute;
-  margin-top: 80px;
-  left: 50%;
-  transform: translate(-50%, 0);
   cursor: pointer;
+  height: 40px;
+  left: 50%;
+  margin-top: 80px;
+  outline: 0;
+  position: absolute;
+  text-transform: uppercase;
+  transform: translate(-50%, 0);
+  width: 140px;
+  -webkit-appearance: none;
 
   &:hover,
   &:focus {
@@ -226,6 +283,15 @@ label {
   &.disable {
     pointer-events: none;
   }
+}
+
+.send-text {
+  background-image: url(../images/sendButton.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 15px;
+  width: 44px;
+  margin: 0 auto;
 }
 
 .confirmation {

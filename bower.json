@@ -5,7 +5,8 @@
     "bootstrap-sass-official": "~3.3.1",
     "modernizr": "~2.8.1",
     "gsap": "~1.15.0",
-    "ScrollMagic": "~1.3.0"
+    "ScrollMagic": "~1.3.0",
+    "font-awesome": "~4.3.0"
   },
   "resolutions": {
     "gsap": "~1.14"

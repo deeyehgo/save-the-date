@@ -36,16 +36,22 @@
   window.addEventListener('resize', handleResize);
   window.dispatchEvent(new Event('resize'));
 
-  var cw, ch;
+  var sw,
+    sh,
+    cw,
+    ch;
   function handleResize(event) {
+    sw = document.body.scrollWidth + 'px';
+    sh = document.body.scrollHeight + 'px';
+
     cw = document.documentElement.clientWidth + 'px';
     ch = document.documentElement.clientHeight + 'px';
 
     bg.style.width = cw;
-    bg.style.height = ch;
+    bg.style.height = sh;
 
     decoration.style.width = cw;
-    decoration.style.height = ch;
+    decoration.style.height = sh;
   }
 
   function postToForm() {
