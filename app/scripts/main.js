@@ -22,10 +22,12 @@
     if($(this).val() !== 'United States of America') {
       $('.form-region').show();
       $('.form-state').hide();
+      $('.stateText').attr('required', true);
       data.state = '';
     } else {
       $('.form-region').hide();
       $('.form-state').show();
+      $('.stateText').attr('required', false);
       data.region = '';
     }
   }).trigger('change'); 
