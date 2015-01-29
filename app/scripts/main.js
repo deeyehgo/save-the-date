@@ -4,19 +4,16 @@
   'use strict';
   var data = {};
   var isFormSubmit = false;
+  var stateCopy = document.querySelector('.state-container-select');
 
   $('#form').on('submit', function() {
     if(isFormSubmit) {
       return false;
     }
+
     postToForm();
     return false;
   });
-
-  var stateCopy = document.querySelector('.state-container-select');
-  $('#mailing_address_state').change(function(event) {
-    // stateCopy.innerHTML = $(this).val();
-  }).trigger('change');
 
   $('#mailing_address_country').change(function() {
     if($(this).val() !== 'United States of America') {
@@ -49,8 +46,6 @@
     cw = document.documentElement.clientWidth + 'px';
     ch = document.documentElement.clientHeight + 'px';
 
-    console.log(sw,sh,cw,ch);
-
     bg.style.width = cw;
     bg.style.height = sh;
 
@@ -60,7 +55,6 @@
 
   function postToForm() {
     if(validateForm() == false) {
-      console.log('form not validate')
       return;
     }
 
@@ -79,7 +73,7 @@
 
     var address = data.addressLine1 + '\n' +
       (data.addressLine2 ? data.addressLine2 + '\n' : '') +
-      (data.city ? data.city + ' ' : '') +
+      (data.city ? data.city + ', ' : '') +
       (data.region ? data.region + ' ' : '') +
       (data.state ? data.state + ' ' : '') +
       data.zipcode;
@@ -94,26 +88,20 @@
       TweenMax.fromTo($('.btn'), tt, {scale: 1, transformPerspective: 600}, {scale: 0.9, ease: Elastic.easeOut, easeParams:[1.2, 1]})
     ], 0, 'sequence', -tt + .1).play();
 
-
     $('.btn').addClass('disable');
 
-
     $.ajax({
-      url: 'https://docs.google.com/forms/d/1fOLyY39SWR9UWBMDSAyUobA96Z6AlKN0AuXVg5I5hm4/formResponse?formkey=1fOLyY39SWR9UWBMDSAyUobA96Z6AlKN0AuXVg5I5hm4',
+      url: $('.save-the-date').attr('action'),
       data: {
-        'entry.1754132370': data.name,
-        'entry.1951772713': address,
-        'entry.2034185737': data.country
+        'name': data.name,
+        'address': address,
+        'country': data.country
       },
+      accepts: 'application/javascript',
       type: 'POST',
-      dataType: 'xml',
       statusCode: {
-        0: function() {
-          console.log('fail');
-          setTimeout(hideForm, 0);
-        },
         200: function() {
-          console.log('scuccess');
+          setTimeout(hideForm, 0);
         }
       }
     });
@@ -131,6 +119,7 @@
         }
       });
 
+      $('input').blur();
       TweenMax.to(window, 1, {scrollTo: {y: 0}, ease: Expo.easeOut});
 
       timelineOut.add([
@@ -147,32 +136,60 @@
     function validateForm() {
       //check name
       if(!$('.form-name input').val()) {
-        console.log('no name');
+        error('.form-name input');
         return false;
       } else if(!$('.form-address input').val()) {
-        console.log('no address');
+        error('.form-address input');
         return false;
       } else if(!$('.city').val()) {
-        console.log('no city');
+        error('.city');
         return false;
       }
 
       if($('#mailing_address_country') !== 'United States of America') {
         if(!$('.state').val()) {
-          console.log('no state');
           return false;
         }
       } else {
         if(!$('.region').val()) {
-          console.log('no region');
+          error('.region');
           return false;
         }
       }
 
       if(!$('.zipcode').val()) {
-        console.log('no zipcode');
+        error('.zipcode');
         return false
       }
+    }
+
+    function error(selector) {
+      TweenMax.to(window, .2, {
+        scrollTo: $(selector).offset().top - 50,
+        ease: Expo.easeOut,
+        onComplete: function() {
+          var timeline = new TimelineMax();
+          timeline.add([
+            TweenMax.to($(selector), .1, {x: 5, ease: Expo.easeOut}),
+            TweenMax.to($(selector), .1, {x: -5, ease: Expo.easeOut}),
+            TweenMax.to($(selector), .1, {x: 5, ease: Expo.easeOut}),
+            TweenMax.to($(selector), .1, {x: -5, ease: Expo.easeOut}),
+            TweenMax.to($(selector), .1, {x: 0, ease: Expo.easeOut}),
+            TweenMax.to($(selector), .1, {x: -5, ease: Expo.easeOut}),
+            TweenMax.to($(selector), .1, {x: 0, ease: Expo.easeOut})
+          ], 0, 'sequence', 0).play();
+
+          var pulse = new TimelineMax();
+          pulse.add([
+            TweenMax.to($(selector), .1, {backgroundColor: '#f8c5c5', ease: Expo.easeOut}),
+            TweenMax.to($(selector), .1, {backgroundColor: '#FFE4DB', ease: Expo.easeOut}),
+            TweenMax.to($(selector), .1, {backgroundColor: '#f8c5c5', ease: Expo.easeOut}),
+            TweenMax.to($(selector), .1, {backgroundColor: '#FFE4DB', ease: Expo.easeOut}),
+            TweenMax.to($(selector), .1, {backgroundColor: '#f8c5c5', ease: Expo.easeOut}),
+            TweenMax.to($(selector), .1, {backgroundColor: '#FFE4DB', ease: Expo.easeOut})
+          ], 0, 'sequence', 0).play();
+        }
+      });
     }
   }
 }());

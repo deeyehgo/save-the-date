@@ -19,13 +19,16 @@ $form-send-bg: $blue;
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
+
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
 body {
+  background-color: #46487b;
   font-family: 'Inconsolata', sans-serif;
-
   margin: 0;
 }
 
@@ -194,7 +197,7 @@ label {
   }
 }
 
-.wedding-form {
+.save-the-date {
   width: 400px;
 
   @media (max-width: 454px) {
@@ -203,7 +206,7 @@ label {
   }
 }
 
-.wedding-form-container {
+.save-the-date-container {
   left: 50%;
   position: absolute;
   transform: translate(-50%, 0);
@@ -235,6 +238,12 @@ label {
 
   @media (max-width: 454px) {
     display: block;
+  }
+
+  label {
+    @media (max-width: 454px) {
+      margin-top: 5px;
+    }
   }
 }
 
@@ -334,14 +343,37 @@ label {
   margin: 0 auto;
 }
 
+.error {
+  animation-name: shake;
+  animation-duration: 1s
+}
+
+@keyframes shake {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+            transform: translate3d(-5px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(5px, 0, 0);
+            transform: translate3d(5px, 0, 0);
+  }
+}
+
+
 .confirmation-container {
-  visibility: hidden;
-  position: absolute;
   left: 50%;
+  position: absolute;
+  text-align: center;
   top: 250px;
   transform: translate(-50%, 0);
+  visibility: hidden;
   z-index: 2;
-  text-align: center;
 
   @media (max-width: 800px) {
     top: 320px;
