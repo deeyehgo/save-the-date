@@ -32,8 +32,8 @@
   var bg = document.querySelector('.bg');
   var decoration = document.querySelector('.decoration');
 
-  window.addEventListener('resize', handleResize);
-  window.dispatchEvent(new Event('resize'));
+  $(window).on('resize', handleResize);
+  $(window).trigger('resize');
 
   var sw,
     sh,
@@ -41,7 +41,7 @@
     ch;
   function handleResize(event) {
     sw = document.body.scrollWidth + 'px';
-    sh = document.body.scrollHeight + 'px';
+    sh = $(document).height() + 'px';
 
     cw = document.documentElement.clientWidth + 'px';
     ch = document.documentElement.clientHeight + 'px';
@@ -190,15 +190,6 @@
           ], 0, 'sequence', 0).play();
         }
       });
-    }
-
-    function toCamelCase(sentenceCase) {
-      var out = '';
-      sentenceCase.split(' ').forEach(function (el, idx) {
-        var add = el.toLowerCase();
-        out += (idx === 0 ? add : add[0].toUpperCase() + add.slice(1));
-      });
-      return out;
     }
   }
 }());

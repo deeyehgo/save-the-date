@@ -33,9 +33,14 @@ input[type=submit],
 input[type=email],
 select,
 .state-container-select {
+  -moz-appearance: none;
   appearance: none;
   border: none;
   font-family: 'Roboto', sans-serif;
+}
+
+select::-ms-expand {
+    display: none;
 }
 
 input,
@@ -47,7 +52,7 @@ select,
 
 input[type=text] {
   background-color: $form-input-bg;
-  padding: 1em;
+  padding: 0 1em;
 
   &:focus {
     background: $form-input-bg;
