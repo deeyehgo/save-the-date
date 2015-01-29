@@ -138,6 +138,10 @@ label {
   position: absolute;
   transform: translate(-50%, 0);
   z-index: 2;
+
+  @media (max-width: 454px) {
+    position: relative;
+  }
 }
 
 .date-header {
@@ -200,12 +204,13 @@ label {
 }
 
 .wedding-form-container {
-  position: absolute;
   left: 50%;
+  position: absolute;
   transform: translate(-50%, 0);
   width: 400px;
 
   @media (max-width: 454px) {
+    position: relative;
     width: 100%;
   }
 }
@@ -284,12 +289,19 @@ label {
   height: 40px;
   left: 50%;
   margin-top: 80px;
+  margin-bottom: 40px;
   outline: 0;
   position: absolute;
   text-transform: uppercase;
   transform: translate(-50%, 0);
   width: 140px;
   -webkit-appearance: none;
+
+  @media (max-width: 454px) {
+    height: 80px;
+    margin-top: 40px;
+    width: 100%;
+  }
 
   &:hover,
   &:focus {
