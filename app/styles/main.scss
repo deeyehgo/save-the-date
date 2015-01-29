@@ -298,9 +298,9 @@ label {
   -webkit-appearance: none;
 
   @media (max-width: 454px) {
+    width: 100%;
     height: 80px;
     margin-top: 40px;
-    width: 100%;
   }
 
   &:hover,
@@ -331,6 +331,10 @@ label {
 }
 
 .confirmation {
+  margin: 0 auto;
+}
+
+.confirmation-container {
   visibility: hidden;
   position: absolute;
   left: 50%;
@@ -339,9 +343,17 @@ label {
   z-index: 2;
   text-align: center;
 
+  @media (max-width: 800px) {
+    top: 320px;
+  }
+
   h1 {
     margin: 0;
     color: white;
+
+    @media (max-width: 454px) {
+      font-size: 20px;
+    }
   }
 }
 

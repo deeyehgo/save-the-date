@@ -49,6 +49,8 @@
     cw = document.documentElement.clientWidth + 'px';
     ch = document.documentElement.clientHeight + 'px';
 
+    console.log(sw,sh,cw,ch);
+
     bg.style.width = cw;
     bg.style.height = sh;
 
@@ -118,7 +120,19 @@
     
     function hideForm() {
       var ttOut = 1.2;
-      var timelineOut = new TimelineMax();
+      var timelineOut = new TimelineMax({
+        onComplete: function() {
+          $('.form-group').css({
+            'display': 'none'
+          });
+
+          bg.style.height = ch;
+          decoration.style.height = ch;
+        }
+      });
+
+      TweenMax.to(window, 1, {scrollTo: {y: 0}, ease: Expo.easeOut});
+
       timelineOut.add([
         TweenMax.to($('.form-name'), ttOut, {x: $(window).width(), autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7], rotationY: '-90_short'}),
         TweenMax.to($('.form-address'), ttOut, {x: $(window).width(), autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7], rotationY: '-90_short'}),
@@ -126,7 +140,8 @@
         TweenMax.to($('.form-country'), ttOut, {x: $(window).width(), autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7], rotationY: '-90_short'}),
         TweenMax.to($('.btn'), ttOut, {x: $(window).width(), autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7], rotationY: '-90_short'})
       ], 0, 'sequence', -ttOut + .1).play();
-      TweenMax.fromTo($('.confirmation'), 2, {scale: 0.5, autoAlpha: 0}, {scale: 1, autoAlpha: 1, delay: timelineOut.duration() - .2 , ease: Elastic.easeOut, easeParams:[1.2, 1.9]});
+
+      TweenMax.fromTo($('.confirmation-container'), 2, {xPercent: 0, scale: 0.5, autoAlpha: 0}, {xPercent: 0, scale: 1, autoAlpha: 1, delay: timelineOut.duration() - .2 , ease: Elastic.easeOut, easeParams:[1.2, 1.9]});
     }
 
     function validateForm() {
