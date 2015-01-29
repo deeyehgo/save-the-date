@@ -78,6 +78,12 @@ label {
   -webkit-appearance: none;
 }
 
+.fa-right {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
 .decoration {
   background-image: url(../images/decoration.png);
   background-position: top center;
@@ -287,6 +293,10 @@ label {
   &.with-region {
 
   }
+}
+
+.btn-wrapper {
+  padding: 0 10px;
 }
 
 .btn {

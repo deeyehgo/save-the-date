@@ -9,10 +9,10 @@
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono|Inconsolata|Roboto' rel='stylesheet' type='text/css'>
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
@@ -55,7 +55,7 @@
               <div class="form-state">
                 <label for="mailing_address_name">State</label>
                 <div class="state-container">
-                  <span class="glyphicon glyphicon-triangle-bottom"></span>
+                  <span class="fa fa-caret-down fa-right"></span>
                   <select class="state form-control" id="mailing_address_state" data-name="mailing_address[state]" name="state">
                     <option value="AL">AL</option>
                     <option value="AK">AK</option>
@@ -119,7 +119,7 @@
             <div class="form-country">
               <label for="mailing_address_country">Country</label>
               <div class="country-container">
-                <span class="glyphicon glyphicon-triangle-bottom"></span>
+                <span class="fa fa-caret-down fa-right"></span>
                 <select class="country form-control" id="mailing_address_country" name="country">
                   <option value="United States of America">United States of America</option>
                   <option value="United Kingdom">United Kingdom</option>
@@ -365,9 +365,11 @@
                 </select>
               </div>
             </div>
-            <button type="submit" class="btn btn-default btn-lg">
-              <div class="send-text"></div>
-            </button>
+            <div class="btn-wrapper">
+              <button type="submit" class="btn btn-default btn-lg">
+                <div class="send-text"></div>
+              </button>
+            </div>
           </div>
         </form>
       </div>
