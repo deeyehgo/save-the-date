@@ -41,7 +41,7 @@
     ch;
   function handleResize(event) {
     sw = document.body.scrollWidth + 'px';
-    sh = $(document).height() + 'px';
+    sh = ($(document).height() + 40) + 'px';
 
     cw = document.documentElement.clientWidth + 'px';
     ch = document.documentElement.clientHeight + 'px';

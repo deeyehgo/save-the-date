@@ -300,6 +300,12 @@ label {
   padding: 0 10px;
 }
 
+.ghost {
+  height: 100px;
+  width: 100px;
+  background-color: #fff;
+}
+
 .btn {
   background-color: $form-send-bg;
   border: 0;
@@ -318,8 +324,7 @@ label {
   -webkit-appearance: none;
 
   @media (max-width: 454px) {
-    width: 100%;
-    height: 80px;
+    height: 44px;
     margin-top: 40px;
   }
 
