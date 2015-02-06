@@ -3,6 +3,7 @@
 (function() {
   'use strict';
   var data = {};
+  var address;
   var isFormSubmit = false;
   var stateCopy = document.querySelector('.state-container-select');
 
@@ -58,10 +59,13 @@
       return;
     }
 
+    $('.send-text').hide();
+    $('.sending-text').show();
+
     isFormSubmit = true;
 
     data = {
-      name: $('#mailing_address_name').val(),
+      name: $('#mailing_address_fullname').val(),
       addressLine1: $('#mailing_address_line_1').val(),
       addressLine2: $('#mailing_address_line_2').val(),
       city: $('#mailing_address_city').val(),
@@ -71,25 +75,32 @@
       zipcode: $('#mailing_address_zipcode').val(),
     };
 
-    var address = data.addressLine1 + '\n' +
+    address = data.addressLine1 + '\n' +
       (data.addressLine2 ? data.addressLine2 + '\n' : '') +
       (data.city ? data.city + ', ' : '') +
       (data.region ? data.region + ' ' : '') +
       (data.state ? data.state + ' ' : '') +
       data.zipcode;
 
-    var timeline = new TimelineMax();
+    var timeline = new TimelineMax({
+      onComplete: sendForm
+    });
+
     var tt = 1.2;
     timeline.add([
-      TweenMax.fromTo($('.form-name'), tt, {scale: 1, transformPerspective: 600}, {scale: 0.9, ease: Elastic.easeOut, easeParams:[1.2, 1]}),
-      TweenMax.fromTo($('.form-address'), tt, {scale: 1, transformPerspective: 600}, {scale: 0.9, ease: Elastic.easeOut, easeParams:[1.2, 1]}),
-      TweenMax.fromTo($('.form-inline'), tt, {scale: 1, transformPerspective: 600}, {scale: 0.9, ease: Elastic.easeOut, easeParams:[1.2, 1]}),
-      TweenMax.fromTo($('.form-country'), tt, {scale: 1, transformPerspective: 600}, {scale: 0.9, ease: Elastic.easeOut, easeParams:[1.2, 1]}),
-      TweenMax.fromTo($('.btn'), tt, {scale: 1, transformPerspective: 600}, {scale: 0.9, ease: Elastic.easeOut, easeParams:[1.2, 1]})
-    ], 0, 'sequence', -tt + .1).play();
+      TweenMax.to($('.form-name'), tt, {x: "+=100px", autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7]}),
+      TweenMax.to($('.form-address'), tt, {x: "+=100px", autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7]}),
+      TweenMax.to($('.form-inline'), tt, {x: "+=100px", autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7]}),
+      TweenMax.to($('.form-country'), tt, {x: "+=100px", autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7]}),
+      TweenMax.to($('.btn'), 1, {y: -$('.save-the-date-container').height() + $('.btn').height() - 20, ease: Expo.easeInOut, delay: .5}),
+      TweenMax.to($(window), 1, {scrollTo: {y: 0}, ease: Expo.easeOut, delay: .5})
+    ], 0, 'sequence', -tt + .05).play();
 
     $('.btn').addClass('disable');
+  }
 
+  function sendForm() {
+    $('.form').addClass('u-hide');
     $.ajax({
       url: $('.save-the-date').attr('action'),
       data: {
@@ -114,7 +125,7 @@
   }
 
   function hideForm(statusCode) {
-    var ttOut = 1.2;
+    var ttOut = .3;
     var timelineOut = new TimelineMax({
       onComplete: function() {
         $('.form-group').css({
@@ -127,23 +138,15 @@
     });
 
     $('input').blur();
-    TweenMax.to(window, 1, {scrollTo: {y: 0}, ease: Expo.easeOut});
-
-    timelineOut.add([
-      TweenMax.to($('.form-name'), ttOut, {x: $(window).width(), autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7], rotationY: '-90_short'}),
-      TweenMax.to($('.form-address'), ttOut, {x: $(window).width(), autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7], rotationY: '-90_short'}),
-      TweenMax.to($('.form-inline'), ttOut, {x: $(window).width(), autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7], rotationY: '-90_short'}),
-      TweenMax.to($('.form-country'), ttOut, {x: $(window).width(), autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7], rotationY: '-90_short'}),
-      TweenMax.to($('.btn'), ttOut, {x: $(window).width(), autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7], rotationY: '-90_short'})
-    ], 0, 'sequence', -ttOut + .1).play();
+    TweenMax.to($('.btn'), ttOut, {autoAlpha: 0});
 
     switch(statusCode) {
       case 200:
       case 0:
-        TweenMax.fromTo($('.confirmation-container'), 2, {xPercent: 0, scale: 0.5, autoAlpha: 0}, {xPercent: 0, scale: 1, autoAlpha: 1, delay: timelineOut.duration() - .2 , ease: Elastic.easeOut, easeParams:[1.2, 1.9]});
+        TweenMax.fromTo($('.confirmation-container'), ttOut + .7, {autoAlpha: 0, y: '+= 12'}, {autoAlpha: 1, y: 0, delay: ttOut - .2, ease: Expo.easeOut});
         break;
       case 404:
-        TweenMax.fromTo($('.submit-error-container'), 2, {xPercent: 0, scale: 0.5, autoAlpha: 0}, {xPercent: 0, scale: 1, autoAlpha: 1, delay: timelineOut.duration() - .2 , ease: Elastic.easeOut, easeParams:[1.2, 1.9]});
+        TweenMax.fromTo($('.submit-error-container'), ttOut + .7, {autoAlpha: 0, y: '+= 12'}, {autoAlpha: 1, y: 0, delay: ttOut - .2, ease: Expo.easeOut});
         break;
     }
   }
@@ -207,7 +210,7 @@
   }
 
   function errorForm() {
-    TweenMax.fromTo($('.confirmation-container'), 2, {xPercent: 0, scale: 0.5, autoAlpha: 0}, {xPercent: 0, scale: 1, autoAlpha: 1, delay: timelineOut.duration() - .2 , ease: Elastic.easeOut, easeParams:[1.2, 1.9]});
+    TweenMax.fromTo($('.confirmation-container'), 2, {autoAlpha: 0}, {autoAlpha: 1, delay: timelineOut.duration() - .2});
 
   }
 }());
