@@ -178,7 +178,10 @@ label {
   margin: 0 30px;
 
   @media (max-width: 800px) {
-    margin: 30px 0;
+    margin: 30px auto;
+    width: 60%;
+    height: auto;
+    display: block;
   }
 }
 
@@ -190,6 +193,7 @@ label {
   @media (max-width: 800px) {
     display: block;
     margin: 0 auto;
+    width: 90%;
   }
 }
 
@@ -201,6 +205,7 @@ label {
   @media (max-width: 800px) {
     display: block;
     margin: 0 auto;
+    width: 90%;
   }
 }
 
@@ -311,7 +316,7 @@ label {
 }
 
 .btn {
-  background-color: $form-send-bg;
+  background-color: rgba(46, 58, 118, 1);
   border: 0;
   border-radius: 2px;
   color: white;
@@ -390,6 +395,69 @@ label {
   }
   100% {
     opacity: 0;
+  }
+}
+
+.sending-miimii {
+  position: absolute;
+  background-image: url(../images/miimii.png);
+  background-size: cover;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  width: 181px;
+  height: 130px;
+  animation: jump .5s steps(2) infinite;
+  top: 220px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  opacity: 0;
+
+  @media (max-width: 800px) {
+    top: 250px;
+  }
+}
+
+@keyframes jump {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -362px 0;
+  }
+}
+
+.thankYou {
+  background-image: url(../images/thankyoutext.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 145px;
+  height: 15px;
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @media (max-width: 450px) {
+    width: 154px;
+    top: 100px;
+  }
+}
+
+.errorMsg {
+  background-image: url(../images/errortext.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 253px;
+  height: 45px;
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @media (max-width: 450px) {
+    width: 242px;
+    top: 100px;
   }
 }
 

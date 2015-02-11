@@ -61,7 +61,7 @@
 
     $('.send-text').hide();
     $('.sending-text').show();
-
+    
     isFormSubmit = true;
 
     data = {
@@ -92,7 +92,8 @@
       TweenMax.to($('.form-address'), tt, {x: "+=100px", autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7]}),
       TweenMax.to($('.form-inline'), tt, {x: "+=100px", autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7]}),
       TweenMax.to($('.form-country'), tt, {x: "+=100px", autoAlpha: 0, ease: Elastic.easeInOut, easeParams:[1.2, .7]}),
-      TweenMax.to($('.btn'), 1, {y: -$('.save-the-date-container').height() + $('.btn').height() - 20, ease: Expo.easeInOut, delay: .5}),
+      TweenMax.to($('.sending-miimii'), 1, {autoAlpha: 1, ease: Expo.easeInOut, delay: .35}),
+      TweenMax.to($('.btn'), 1, {y: -$('.save-the-date-container').height() + $('.sending-miimii').height() - 20, backgroundColor: 'rgba(46, 58, 118, 0)', outline: 'none', ease: Expo.easeInOut, delay: .3}),
       TweenMax.to($(window), 1, {scrollTo: {y: 0}, ease: Expo.easeOut, delay: .5})
     ], 0, 'sequence', -tt + .05).play();
 
@@ -143,10 +144,10 @@
     switch(statusCode) {
       case 200:
       case 0:
-        TweenMax.fromTo($('.confirmation-container'), ttOut + .7, {autoAlpha: 0, y: '+= 12'}, {autoAlpha: 1, y: 0, delay: ttOut - .2, ease: Expo.easeOut});
+        TweenMax.fromTo($('.confirmation-container'), ttOut + .7, {autoAlpha: 0, y: '+= 12', x: '-50%'}, {autoAlpha: 1, y: 0, x: '-50%', delay: ttOut - .2, ease: Expo.easeOut});
         break;
       case 404:
-        TweenMax.fromTo($('.submit-error-container'), ttOut + .7, {autoAlpha: 0, y: '+= 12'}, {autoAlpha: 1, y: 0, delay: ttOut - .2, ease: Expo.easeOut});
+        TweenMax.fromTo($('.submit-error-container'), ttOut + .7, {autoAlpha: 0, y: '+= 12', x: '-50%'}, {autoAlpha: 1, y: 0, x: '-50%', delay: ttOut - .2, ease: Expo.easeOut});
         break;
     }
   }
